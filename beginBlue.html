@@ -1,0 +1,39 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>0 Begin</title> 
+        	<style type="text/css">
+		#maincontainer 
+		{   
+		top:0px;
+		padding-top:0;
+		margin:auto; 
+		position:relative;
+		width:1600px;
+		}
+
+.file input {
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;/*关键点*/
+  filter: alpha(opacity=0);/*兼容ie*/
+  font-size: 100px;/* 增大不同浏览器的可点击区域 */
+  cursor: pointer;
+}
+
+  	</style>
+</head>
+
+<body style="background-color:rgb(255,255,192)">
+<script>
+document.write(' <br><br>5 minutes of rest. Please relax yourself.<br>Then you will do a task.');
+document.write(' <br>In the task, you need to adjust the color of the central patch, ');
+document.write(' <br>using up, down, left, right buttons on the keyboard, until you feel it is white.');
+
+setTimeout(function(){document.location.href=('matchNoWord.html');},300000); 
+</script>
+
+</body>
