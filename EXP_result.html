@@ -1,0 +1,39 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<title>12 Results</title> 
+        	<style type="text/css">
+		#maincontainer 
+		{   
+		top:0px;
+		padding-top:0;
+		margin:auto; 
+		position:relative;
+		width:1600px;
+		}
+
+.file input {
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;/*关键点*/
+  filter: alpha(opacity=0);/*兼容ie*/
+  font-size: 100px;/* 增大不同浏览器的可点击区域 */
+  cursor: pointer;
+}
+  	</style>
+
+</head>
+
+<body style="background-color:rgb(200,150,100)">
+
+<script>
+	
+	document.write("saved RGB " + localStorage.savedRGB+"<br>");
+	document.write("saved LAB " + localStorage.savedLAB+"<br>");
+</script>
+
+
+</body>

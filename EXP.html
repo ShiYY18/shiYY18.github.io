@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Ambient Display Chromaticity Experiment</title>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0
+        }
+        body { display:flex; align-items: center; justify-content: center; background-color: black; }
+        #matchSurface { width: 300px; height: 300px; }
+        #matchDebug { position: absolute; top: 0; left: 0; color: white }
+    </style>
+
+    <script src="ScreenCalDat20122021-tablet-255levels.js"></script>
+    <script src="kccv.js"></script>
+
+<script>
+        var tablet = new Kccv();
+        tablet.cal_init(CalData);
+
+        document.addEventListener('keydown', onKeyDown);
+
+        var step = 1;
+        var aStep = 0;
+        var bStep = 0;
+        var LStep = 60;
+
+        const WP = [124.7000, 0.2955, 0.2969];
+
+        function showLAB() {
+            var LAB = [LStep * step, aStep * step, bStep * step];
+            var RGB = tablet.kccv(LAB, 'lab', 'ui8rgb', { whitepoint: WP, RGB_Ceil: true });
+
+            var matchSurface = document.getElementById("matchSurface");
+            if (matchSurface) matchSurface.style.backgroundColor = `rgb(${RGB[0]},${RGB[1]},${RGB[2]})`;
+        }
+
+        function saveLAB() {
+            var LAB = [LStep * step, aStep * step, bStep * step];
+            var RGB = tablet.kccv(LAB, 'lab', 'ui8rgb', { whitepoint: WP, RGB_Ceil: true });
+
+            document.write("<br>Congratulations! You finish the task.<br>");
+               document.write("saved RGB " + RGB+"<br>");
+	document.write("saved LAB " + LAB+"<br>");
+
+        }
+
+        function onKeyDown(e) {
+            switch (e.key) {
+                case "ArrowLeft": bStep--; break;
+                case "ArrowRight": bStep++; break;
+                case "ArrowUp": aStep++; break;
+                case "ArrowDown": aStep--; break;
+                case "Enter": 
+                    saveLAB();
+                    break;
+                case "Home":
+                    aStep = 0; bStep = 0; LStep = 500;
+                    break;
+                default:
+                    return;
+            }
+           showLAB();  
+           
+        }
+
+
+</script>
+</head>
+<body onload="showLAB()">
+    <div id="matchSurface"></div>
+    <div id="matchDebug"></div>
+</body>
+</html>
