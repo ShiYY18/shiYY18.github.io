@@ -25,12 +25,11 @@
         var bStep = 0;
         var LStep = 50;
 
-        const D65_10deg = [100.0000, 0.3138, 0.3310];
-        const WP= [124.7000, 0.2955, 0.2969];
+        const D65_2deg = [124.7000, 0.2955, 0.2969];
 
         function showLAB() {
             var LAB = [LStep * step, aStep * step, bStep * step];
-            var RGB = tablet.kccv(LAB, 'lab', 'ui8rgb', { whitepoint: WP, RGB_Ceil: true });
+            var RGB = tablet.kccv(LAB, 'lab', 'ui8rgb', { whitepoint: D65_2deg, RGB_Ceil: true });
 
             var matchSurface = document.getElementById("matchSurface");
             if (matchSurface) matchSurface.style.backgroundColor = `rgb(${RGB[0]},${RGB[1]},${RGB[2]})`;
